@@ -72,7 +72,7 @@ class MyApp extends StatelessWidget {
 
 And a lot more.... 
 There is a lot of customization available which is self explantory.
-You can the read the full documentation [`here`](https://github.com/sarcastic-verma/dialog_switcher/blob/master/lib/dialog_switcher.dart).
+If you ever face a problem, feel free to create an issue.
 
 See the [`example`](https://github.com/sarcastic-verma/dialog_switcher/blob/master/example) directory for a complete sample app.
 
