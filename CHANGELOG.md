@@ -1,3 +1,7 @@
+## [0.0.4] - April 27, 2021
+
+Updated README.md
+
 # [0.0.3] - April 27, 2021
 
 - Fix UniqueKey Issue
