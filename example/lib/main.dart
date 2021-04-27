@@ -1,5 +1,5 @@
+import 'package:dialog_switcher/dialog_switcher.dart';
 import 'package:flutter/material.dart';
-import 'package:transition_switcher/dialog_switcher.dart';
 
 void main() {
   runApp(MyApp());

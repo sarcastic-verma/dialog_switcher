@@ -7,8 +7,7 @@
 *Allows user to switch widgets gracefully within a dialog with Animation.*
 
 ## Sample
-https://user-images.githubusercontent.com/50954641/115972283-0b9f3900-a56b-11eb-8841-6b66b6479459.mp4
-
+[![]()](https://user-images.githubusercontent.com/50954641/115972283-0b9f3900-a56b-11eb-8841-6b66b6479459.mp4)
 
 ## Usage
 

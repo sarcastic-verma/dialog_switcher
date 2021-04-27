@@ -81,8 +81,12 @@ class DialogSwitcher extends StatefulWidget {
   final Alignment? childAlignment;
 
   // widget parameter
-  /// [useUniqueKey] A boolean to determine if UniqueKey is needed or not
-  late bool useUniqueKey;
+  /// [_useUniqueKey] A boolean to determine if UniqueKey is needed or not
+  late bool _useUniqueKey;
+
+  // widget parameter
+  /// [_uniqueKeys] An array that contains the Unique Keys
+  late List<UniqueKey> _uniqueKeys;
 
   DialogSwitcher({
     Key? key,
@@ -101,9 +105,11 @@ class DialogSwitcher extends StatefulWidget {
   }) : super(key: key) {
     // to check if a widget will require a unique key or not
     if (frontChild.runtimeType == backChild.runtimeType) {
-      useUniqueKey = true;
+      _useUniqueKey = true;
+      _uniqueKeys = [UniqueKey(), UniqueKey()];
     } else {
-      useUniqueKey = false;
+      _useUniqueKey = false;
+      _uniqueKeys = [];
     }
   }
 
@@ -150,7 +156,7 @@ class _DialogSwitcherState extends State<DialogSwitcher> {
                   toggleDialog();
                   widget.frontChildOnTap?.call();
                 },
-                key: widget.useUniqueKey ? UniqueKey() : null,
+                key: widget._useUniqueKey ? widget._uniqueKeys[0] : null,
               )
             : GestureDetector(
                 child: widget.backChild,
@@ -158,7 +164,7 @@ class _DialogSwitcherState extends State<DialogSwitcher> {
                   toggleDialog();
                   widget.backChildOnTap?.call();
                 },
-                key: widget.useUniqueKey ? UniqueKey() : null,
+                key: widget._useUniqueKey ? widget._uniqueKeys[1] : null,
               ),
       ),
     );
