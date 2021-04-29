@@ -1,3 +1,7 @@
+## [0.0.5] - April 29, 2021
+
+- Attached mutable variables to state
+
 ## [0.0.4] - April 27, 2021
 
 Updated README.md

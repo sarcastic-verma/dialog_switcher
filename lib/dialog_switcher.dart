@@ -2,7 +2,6 @@ library dialog_switcher;
 
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class DialogSwitcher extends StatefulWidget {
   // external parameters
 
@@ -80,14 +79,6 @@ class DialogSwitcher extends StatefulWidget {
   /// an alignment of (0.0, 1.0).
   final Alignment? childAlignment;
 
-  // widget parameter
-  /// [_useUniqueKey] A boolean to determine if UniqueKey is needed or not
-  late bool _useUniqueKey;
-
-  // widget parameter
-  /// [_uniqueKeys] An array that contains the Unique Keys
-  late List<UniqueKey> _uniqueKeys;
-
   DialogSwitcher({
     Key? key,
     required this.frontChild,
@@ -102,16 +93,7 @@ class DialogSwitcher extends StatefulWidget {
     this.switchOutCurve,
     this.reverseDuration,
     this.duration,
-  }) : super(key: key) {
-    // to check if a widget will require a unique key or not
-    if (frontChild.runtimeType == backChild.runtimeType) {
-      _useUniqueKey = true;
-      _uniqueKeys = [UniqueKey(), UniqueKey()];
-    } else {
-      _useUniqueKey = false;
-      _uniqueKeys = [];
-    }
-  }
+  }) : super(key: key);
 
   @override
   _DialogSwitcherState createState() => _DialogSwitcherState();
@@ -119,6 +101,25 @@ class DialogSwitcher extends StatefulWidget {
 
 class _DialogSwitcherState extends State<DialogSwitcher> {
   bool isFront = true;
+
+  /// [_useUniqueKey] A boolean to determine if UniqueKey is needed or not
+  late bool _useUniqueKey;
+
+  /// [_uniqueKeys] An array that contains the Unique Keys
+  late List<UniqueKey> _uniqueKeys;
+
+  @override
+  void initState() {
+    // to check if a widget will require a unique key or not
+    if (widget.frontChild.runtimeType == widget.backChild.runtimeType) {
+      _useUniqueKey = true;
+      _uniqueKeys = [UniqueKey(), UniqueKey()];
+    } else {
+      _useUniqueKey = false;
+      _uniqueKeys = [];
+    }
+    super.initState();
+  }
 
   void toggleDialog() {
     setState(() {
@@ -156,7 +157,7 @@ class _DialogSwitcherState extends State<DialogSwitcher> {
                   toggleDialog();
                   widget.frontChildOnTap?.call();
                 },
-                key: widget._useUniqueKey ? widget._uniqueKeys[0] : null,
+                key: _useUniqueKey ? _uniqueKeys[0] : null,
               )
             : GestureDetector(
                 child: widget.backChild,
@@ -164,7 +165,7 @@ class _DialogSwitcherState extends State<DialogSwitcher> {
                   toggleDialog();
                   widget.backChildOnTap?.call();
                 },
-                key: widget._useUniqueKey ? widget._uniqueKeys[1] : null,
+                key: _useUniqueKey ? _uniqueKeys[1] : null,
               ),
       ),
     );
