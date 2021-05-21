@@ -1,3 +1,7 @@
+## [0.0.6] - May 21, 2021
+   
+- Removed Test file
+
 ## [0.0.5] - April 29, 2021
 
 - Attached mutable variables to state
